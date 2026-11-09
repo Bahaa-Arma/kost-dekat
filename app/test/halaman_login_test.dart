@@ -2,22 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:kosdekat/halaman/halaman_login.dart';
+import 'package:kosdekat/halaman/halaman_utama.dart';
 
 void main() {
-  String? namaDiterima;
-  String? emailDiterima;
-
-  Future<void> bukaLogin(WidgetTester tester) => tester.pumpWidget(
-    MaterialApp(
-      home: HalamanLogin(
-        bukaHalamanUtama: (nama, email) {
-          namaDiterima = nama;
-          emailDiterima = email;
-          return const Scaffold(body: Text('Halaman utama'));
-        },
-      ),
-    ),
-  );
+  Future<void> bukaLogin(WidgetTester tester) =>
+      tester.pumpWidget(const MaterialApp(home: HalamanLogin()));
 
   Future<void> isi(
     WidgetTester tester,
@@ -48,7 +37,7 @@ void main() {
       find.text('Pakai email @student.telkomuniversity.ac.id'),
       findsOneWidget,
     );
-    expect(find.text('Halaman utama'), findsNothing);
+    expect(find.byType(NavigationBar), findsNothing);
   });
 
   testWidgets('nama pendek, email kosong, sandi pendek ditolak', (
@@ -62,7 +51,7 @@ void main() {
     expect(find.text('Kata sandi minimal 6 karakter'), findsOneWidget);
   });
 
-  testWidgets('data valid masuk ke halaman utama dan back tidak kembali', (
+  testWidgets('data valid masuk, back tidak kembali, nama tampil di Profil', (
     tester,
   ) async {
     await bukaLogin(tester);
@@ -73,11 +62,42 @@ void main() {
       'rahasia1',
     );
 
-    expect(find.text('Halaman utama'), findsOneWidget);
-    expect(namaDiterima, 'Budi Santoso');
-    expect(emailDiterima, 'budi@student.telkomuniversity.ac.id');
+    expect(find.byType(NavigationBar), findsOneWidget);
     expect(
-      Navigator.of(tester.element(find.text('Halaman utama'))).canPop(),
+      Navigator.of(tester.element(find.byType(NavigationBar))).canPop(),
+      isFalse,
+    );
+
+    await tester.tap(find.text('Profil'));
+    await tester.pumpAndSettle();
+    expect(find.text('Budi Santoso'), findsOneWidget);
+    expect(find.text('budi@student.telkomuniversity.ac.id'), findsOneWidget);
+    expect(find.text('BS'), findsOneWidget);
+  });
+
+  testWidgets('Keluar: Batal tetap di Profil, Keluar kembali ke login', (
+    tester,
+  ) async {
+    await tester.pumpWidget(const MaterialApp(home: HalamanUtama()));
+    await tester.tap(find.text('Profil'));
+    await tester.pumpAndSettle();
+    expect(find.text('Mahasiswa Tel-U'), findsOneWidget);
+
+    await tester.tap(find.widgetWithText(OutlinedButton, 'Keluar'));
+    await tester.pumpAndSettle();
+    expect(find.text('Keluar dari KosDekat?'), findsOneWidget);
+    await tester.tap(find.widgetWithText(TextButton, 'Batal'));
+    await tester.pumpAndSettle();
+    expect(find.text('Mahasiswa Tel-U'), findsOneWidget);
+
+    await tester.tap(find.widgetWithText(OutlinedButton, 'Keluar'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.widgetWithText(TextButton, 'Keluar'));
+    await tester.pumpAndSettle();
+    expect(find.text('Masuk ke KosDekat'), findsOneWidget);
+    expect(find.byType(NavigationBar), findsNothing);
+    expect(
+      Navigator.of(tester.element(find.text('Masuk ke KosDekat'))).canPop(),
       isFalse,
     );
   });
