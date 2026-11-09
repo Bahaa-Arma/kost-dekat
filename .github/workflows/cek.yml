@@ -1,0 +1,47 @@
+# Menjalankan flutter analyze + flutter test (app) dan dart analyze (server)
+# di setiap push ke main dan setiap PR.
+# Langkah dilewati otomatis selama app/ atau server/ belum berisi pubspec.yaml.
+name: Cek KosDekat
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        if: hashFiles('app/pubspec.yaml') != ''
+        with:
+          channel: stable
+          cache: true
+      - name: flutter pub get
+        if: hashFiles('app/pubspec.yaml') != ''
+        working-directory: app
+        run: flutter pub get
+      - name: flutter analyze
+        if: hashFiles('app/pubspec.yaml') != ''
+        working-directory: app
+        run: flutter analyze
+      - name: flutter test
+        if: hashFiles('app/pubspec.yaml') != ''
+        working-directory: app
+        run: flutter test
+
+  server:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+        if: hashFiles('server/pubspec.yaml') != ''
+      - name: dart pub get
+        if: hashFiles('server/pubspec.yaml') != ''
+        working-directory: server
+        run: dart pub get
+      - name: dart analyze
+        if: hashFiles('server/pubspec.yaml') != ''
+        working-directory: server
+        run: dart analyze
