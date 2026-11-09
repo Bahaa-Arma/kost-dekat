@@ -21,6 +21,16 @@ flutter:
   assets:
     - assets/kosdekat_logo.png
     - assets/kos_illustration.png
+  fonts:
+    - family: PlusJakartaSans
+      fonts:
+        - asset: assets/fonts/PlusJakartaSans-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/PlusJakartaSans-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/PlusJakartaSans-Bold.ttf
+          weight: 700
+
 flutter_launcher_icons:
   android: true
   ios: false

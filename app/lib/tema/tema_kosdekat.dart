@@ -10,6 +10,7 @@ final themeModeNotifier = ValueNotifier<ThemeMode>(ThemeMode.system);
 /// Tema terang khas KosDekat.
 final temaTerang = ThemeData(
   useMaterial3: true,
+  fontFamily: 'PlusJakartaSans',
   colorScheme: ColorScheme.fromSeed(
     seedColor: warnaSeed,
     brightness: Brightness.light,
@@ -48,6 +49,7 @@ final temaTerang = ThemeData(
 /// Tema gelap khas KosDekat.
 final temaGelap = ThemeData(
   useMaterial3: true,
+  fontFamily: 'PlusJakartaSans',
   colorScheme: ColorScheme.fromSeed(
     seedColor: warnaSeed,
     brightness: Brightness.dark,
@@ -84,4 +86,3 @@ final temaGelap = ThemeData(
     ),
   ),
 );
-
