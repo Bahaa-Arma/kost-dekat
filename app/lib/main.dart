@@ -17,39 +17,7 @@ class KosDekatApp extends StatelessWidget {
       theme: temaTerang,
       darkTheme: temaGelap,
       themeMode: ThemeMode.system,
-      home: HalamanLogin(
-        // TODO(SCRUM-27): ganti dengan HalamanUtama(service, namaPengguna, emailPengguna).
-        bukaHalamanUtama: (nama, email) => const _HalamanSementara(),
-      ),
-    );
-  }
-}
-
-class _HalamanSementara extends StatelessWidget {
-  const _HalamanSementara();
-
-  @override
-  Widget build(BuildContext context) {
-    final teks = Theme.of(context).textTheme;
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 24, 16, 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('KosDekat', style: teks.headlineMedium),
-              const SizedBox(height: 8),
-              Text(
-                'Halaman utama sedang dibuat (SCRUM-27).',
-                style: teks.bodyMedium?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+      home: const HalamanLogin(),
     );
   }
 }

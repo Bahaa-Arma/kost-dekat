@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'halaman_utama.dart';
+
 const _akhiranEmailKampus = '@student.telkomuniversity.ac.id';
 
 /// Login simulasi lokal: tidak ada server, kata sandi tidak dikirim maupun disimpan.
 class HalamanLogin extends StatefulWidget {
-  const HalamanLogin({super.key, required this.bukaHalamanUtama});
-
-  // shortcut: callback, bukan KosService, karena HalamanUtama (SCRUM-27) belum ada; ganti saat SCRUM-27 di-merge.
-  final Widget Function(String nama, String email) bukaHalamanUtama;
+  // shortcut: belum menerima KosService; tambahkan dan teruskan ke HalamanUtama saat SCRUM-19 di-merge.
+  const HalamanLogin({super.key});
 
   @override
   State<HalamanLogin> createState() => _HalamanLoginState();
@@ -30,13 +30,13 @@ class _HalamanLoginState extends State<HalamanLogin> {
 
   void _masuk() {
     if (!_kunciForm.currentState!.validate()) return;
-    final tujuan = widget.bukaHalamanUtama(
-      _namaController.text.trim(),
-      _emailController.text.trim().toLowerCase(),
-    );
+    final nama = _namaController.text.trim();
+    final email = _emailController.text.trim().toLowerCase();
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (_) => tujuan),
+      MaterialPageRoute(
+        builder: (_) => HalamanUtama(namaPengguna: nama, emailPengguna: email),
+      ),
     );
   }
 

@@ -39,8 +39,12 @@ KosDekat adalah aplikasi Android (Flutter) untuk mencari kos di sekitar Telkom U
 | Favorit | Tandai kos, lihat di tab Favorit |
 | Tema | Terang dan gelap dari satu warna seed, font kustom, ikon launcher sendiri |
 | Keadaan jaringan | Memuat, gagal (tombol **Coba lagi**), berhasil |
+| Login (simulasi lokal) | Validasi nama, email `@student.telkomuniversity.ac.id`, dan kata sandi minimal 6 karakter. Tanpa server: data tidak dikirim dan kata sandi tidak disimpan |
+| Keluar | Tombol di tab Profil dengan konfirmasi, kembali ke halaman login |
 
 Navigasi bawah: **Cari · Favorit · Profil**.
+
+> Favorit dan ulasan disimpan di memori aplikasi, jadi ikut hilang saat pengguna **Keluar** atau menutup aplikasi.
 
 ---
 
