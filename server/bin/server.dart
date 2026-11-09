@@ -52,7 +52,5 @@ Future<void> main() async {
       .addMiddleware(logRequests())
       .addHandler(router.call);
   final server = await shelf_io.serve(handler, InternetAddress.anyIPv4, 8080);
-  print(
-    'Server KosDekat berjalan di http://${server.address.host}:${server.port}',
-  );
+  print('Server KosDekat berjalan di port ${server.port}');
 }
