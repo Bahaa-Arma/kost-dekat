@@ -9,6 +9,7 @@ Indeks semua dokumen pendukung proyek. Kembali ke [README utama](../README.md).
 | [design/design-guidelines.md](design/design-guidelines.md) | Aksesibilitas, kontras, teks antarmuka, do's & don'ts | A3, A4, A5 |
 | [design/design-components.md](design/design-components.md) | Spesifikasi 28 komponen per halaman | A3, A4 |
 | [PRD.md](PRD.md) | Analisis kebutuhan, problem statement, tujuan, stakeholder, FR/NFR, user story, acceptance criteria, scope | Semua anggota |
+| PRD (dokumen terpisah) | Problem statement, tujuan, kebutuhan, user story, acceptance criteria, scope | Semua anggota, _isi tautan_ |
 | [../CONTRIBUTING.md](../CONTRIBUTING.md) | Aturan branch, commit, PR | Semua anggota |
 
 ## Status token desain
