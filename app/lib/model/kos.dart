@@ -1,4 +1,4 @@
-/// Satu kos dari server. Nama field sama persis dengan `server/data/kos.json`.
+/// Nama field sama persis dengan `server/data/kos.json`.
 class Kos {
   const Kos({
     required this.id,

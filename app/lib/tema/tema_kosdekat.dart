@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 // shortcut: seed masih usulan (inferred), ganti setelah tim memilih dari shot "Papa Kost".
 const warnaSeed = Color(0xFF1F6FEB);
 
-/// Warna di luar ColorScheme. Saat ini hanya bintang rating.
+/// Warna di luar ColorScheme.
 @immutable
 class WarnaKosDekat extends ThemeExtension<WarnaKosDekat> {
   const WarnaKosDekat({required this.bintang});
@@ -34,8 +34,7 @@ ThemeData _buatTema(Brightness brightness) {
       titleLarge: TextStyle(fontWeight: FontWeight.w600),
       titleMedium: TextStyle(fontWeight: FontWeight.w600),
     ),
-    // Tombol, chip, SegmentedButton, FAB, dan NavigationBar memakai bawaan M3
-    // karena sudah sama dengan design-components.md. Hanya kartu yang berbeda.
+    // Komponen lain memakai bawaan M3 karena sudah sesuai design-components.md.
     cardTheme: const CardThemeData(
       elevation: 0,
       margin: EdgeInsets.zero,
