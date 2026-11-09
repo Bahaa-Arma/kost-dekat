@@ -43,3 +43,8 @@ pengumpulan/
 kosdekat_kelompok06*.zip
 
 # pubspec.lock SENGAJA di-commit agar versi paket semua anggota sama.
+
+.claude-flow/
+.idea/
+app-backup/
+*.iml
