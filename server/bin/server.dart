@@ -10,6 +10,28 @@ const _headerJson = {'Content-Type': 'application/json'};
 Response _balasJson(Object? isi, {int status = 200}) =>
     Response(status, body: jsonEncode(isi), headers: _headerJson);
 
+/// Kelompokkan kos per area: jumlah kos dan harga rata-rata (dibulatkan), urut nama area.
+List<Map<String, Object>> ringkasArea(List<Map<String, dynamic>> daftarKos) {
+  final hargaPerArea = <String, List<int>>{};
+  for (final kos in daftarKos) {
+    hargaPerArea
+        .putIfAbsent(kos['area'] as String, () => [])
+        .add(kos['hargaBulanan'] as int);
+  }
+  final namaArea = hargaPerArea.keys.toList()..sort();
+  return [
+    for (final area in namaArea)
+      {
+        'area': area,
+        'jumlahKos': hargaPerArea[area]!.length,
+        'hargaRataRata':
+            (hargaPerArea[area]!.reduce((a, b) => a + b) /
+                    hargaPerArea[area]!.length)
+                .round(),
+      },
+  ];
+}
+
 Future<void> main() async {
   // Dijalankan dari folder server/, jadi path relatif ini menunjuk server/data/kos.json.
   final daftarKos =
@@ -23,7 +45,8 @@ Future<void> main() async {
         if (kos['id'] == id) return _balasJson(kos);
       }
       return _balasJson({'pesan': 'Kos tidak ditemukan'}, status: 404);
-    });
+    })
+    ..get('/area', (Request req) => _balasJson(ringkasArea(daftarKos)));
 
   final handler = const Pipeline()
       .addMiddleware(logRequests())
