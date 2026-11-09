@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'halaman/halaman_login.dart';
 import 'tema/tema_kosdekat.dart';
 
 void main() {
@@ -16,8 +17,10 @@ class KosDekatApp extends StatelessWidget {
       theme: temaTerang,
       darkTheme: temaGelap,
       themeMode: ThemeMode.system,
-      // TODO(SCRUM-27): ganti dengan HalamanUtama (NavigationBar Cari, Favorit, Profil).
-      home: const _HalamanSementara(),
+      home: HalamanLogin(
+        // TODO(SCRUM-27): ganti dengan HalamanUtama(service, namaPengguna, emailPengguna).
+        bukaHalamanUtama: (nama, email) => const _HalamanSementara(),
+      ),
     );
   }
 }

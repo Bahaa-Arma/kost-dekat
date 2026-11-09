@@ -42,6 +42,12 @@ ThemeData _buatTema(Brightness brightness) {
         borderRadius: BorderRadius.all(Radius.circular(16)),
       ),
     ),
+    // Text Field outlined radius 12; warna fokus dan error tetap bawaan M3.
+    inputDecorationTheme: const InputDecorationTheme(
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+      ),
+    ),
     extensions: [
       // Amber gelap di mode terang agar kontras bintang tetap >= 3:1 (design.md).
       WarnaKosDekat(
