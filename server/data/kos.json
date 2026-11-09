@@ -1,17 +1,122 @@
 [
-  {"id": "1", "nama": "Kos Melati Indah (contoh)", "area": "Sukapura", "tipe": "Putri", "hargaBulanan": 1250000, "kamarMandiDalam": true, "jarakKm": 0.8, "diperbarui": "2026-10-28T09:00:00.000"},
-  {"id": "2", "nama": "Kos Graha Sukapura (contoh)", "area": "Sukapura", "tipe": "Putra", "hargaBulanan": 900000, "kamarMandiDalam": false, "jarakKm": 0.5, "diperbarui": "2026-10-20T14:30:00.000"},
-  {"id": "3", "nama": "Kos Pelangi Senja (contoh)", "area": "Sukapura", "tipe": "Campur", "hargaBulanan": 1800000, "kamarMandiDalam": true, "jarakKm": 1.2, "diperbarui": "2026-11-02T08:15:00.000"},
-  {"id": "4", "nama": "Kos Bambu Kuning (contoh)", "area": "Sukapura", "tipe": "Putra", "hargaBulanan": 700000, "kamarMandiDalam": false, "jarakKm": 0.3, "diperbarui": "2026-09-30T19:00:00.000"},
-  {"id": "5", "nama": "Kos Anggrek Biru (contoh)", "area": "Sukabirus", "tipe": "Putri", "hargaBulanan": 1100000, "kamarMandiDalam": true, "jarakKm": 0.6, "diperbarui": "2026-10-25T10:45:00.000"},
-  {"id": "6", "nama": "Kos Rumah Hijau (contoh)", "area": "Sukabirus", "tipe": "Campur", "hargaBulanan": 1500000, "kamarMandiDalam": true, "jarakKm": 0.9, "diperbarui": "2026-11-05T16:20:00.000"},
-  {"id": "7", "nama": "Kos Cendana Asri (contoh)", "area": "Sukabirus", "tipe": "Putra", "hargaBulanan": 850000, "kamarMandiDalam": false, "jarakKm": 0.4, "diperbarui": "2026-10-12T07:30:00.000"},
-  {"id": "8", "nama": "Kos Teratai Putih (contoh)", "area": "Sukabirus", "tipe": "Putri", "hargaBulanan": 950000, "kamarMandiDalam": false, "jarakKm": 1.1, "diperbarui": "2026-10-18T13:00:00.000"},
-  {"id": "9", "nama": "Kos Bumi Bojong (contoh)", "area": "Bojongsoang", "tipe": "Campur", "hargaBulanan": 2500000, "kamarMandiDalam": true, "jarakKm": 2.4, "diperbarui": "2026-11-07T11:10:00.000"},
-  {"id": "10", "nama": "Kos Sawah Lestari (contoh)", "area": "Bojongsoang", "tipe": "Putra", "hargaBulanan": 650000, "kamarMandiDalam": false, "jarakKm": 3.5, "diperbarui": "2026-09-22T09:40:00.000"},
-  {"id": "11", "nama": "Kos Kenanga Damai (contoh)", "area": "Bojongsoang", "tipe": "Putri", "hargaBulanan": 1350000, "kamarMandiDalam": true, "jarakKm": 2.0, "diperbarui": "2026-10-30T15:55:00.000"},
-  {"id": "12", "nama": "Kos Griya Sejuk (contoh)", "area": "Bojongsoang", "tipe": "Putra", "hargaBulanan": 1000000, "kamarMandiDalam": true, "jarakKm": 2.8, "diperbarui": "2026-10-08T20:05:00.000"},
-  {"id": "13", "nama": "Kos Lembayung (contoh)", "area": "Citeureup", "tipe": "Putri", "hargaBulanan": 800000, "kamarMandiDalam": false, "jarakKm": 1.7, "diperbarui": "2026-10-15T08:00:00.000"},
-  {"id": "14", "nama": "Kos Cemara Dua (contoh)", "area": "Citeureup", "tipe": "Campur", "hargaBulanan": 2100000, "kamarMandiDalam": true, "jarakKm": 1.5, "diperbarui": "2026-11-03T12:25:00.000"},
-  {"id": "15", "nama": "Kos Tanjung Sari (contoh)", "area": "Citeureup", "tipe": "Putra", "hargaBulanan": 750000, "kamarMandiDalam": false, "jarakKm": 3.1, "diperbarui": "2026-09-28T17:35:00.000"}
+  {
+    "id": "k01",
+    "nama": "Pondok Sukapura Residence",
+    "area": "Sukapura",
+    "tipe": "Putra",
+    "hargaBulanan": 1250000,
+    "kamarMandiDalam": true,
+    "jarakKm": 1.2,
+    "diperbarui": "2026-11-08T09:00:00.000Z"
+  },
+  {
+    "id": "k02",
+    "nama": "Wisma Melati",
+    "area": "Sukapura",
+    "tipe": "Putri",
+    "hargaBulanan": 1450000,
+    "kamarMandiDalam": true,
+    "jarakKm": 1.0,
+    "diperbarui": "2026-11-08T09:00:00.000Z"
+  },
+  {
+    "id": "k03",
+    "nama": "Kost Sukabirus Asri",
+    "area": "Sukabirus",
+    "tipe": "Campur",
+    "hargaBulanan": 1100000,
+    "kamarMandiDalam": false,
+    "jarakKm": 1.5,
+    "diperbarui": "2026-11-08T09:00:00.000Z"
+  },
+  {
+    "id": "k04",
+    "nama": "Pondokan Bu Rina",
+    "area": "Sukabirus",
+    "tipe": "Putri",
+    "hargaBulanan": 1350000,
+    "kamarMandiDalam": true,
+    "jarakKm": 1.4,
+    "diperbarui": "2026-11-08T09:00:00.000Z"
+  },
+  {
+    "id": "k05",
+    "nama": "Kost Bojongsoang Indah",
+    "area": "Bojongsoang",
+    "tipe": "Putra",
+    "hargaBulanan": 950000,
+    "kamarMandiDalam": false,
+    "jarakKm": 2.8,
+    "diperbarui": "2026-11-08T09:00:00.000Z"
+  },
+  {
+    "id": "k06",
+    "nama": "Griya Mahasiswa",
+    "area": "Bojongsoang",
+    "tipe": "Campur",
+    "hargaBulanan": 1600000,
+    "kamarMandiDalam": true,
+    "jarakKm": 2.4,
+    "diperbarui": "2026-11-08T09:00:00.000Z"
+  },
+  {
+    "id": "k07",
+    "nama": "Kost Cikoneng Nyaman",
+    "area": "Cikoneng",
+    "tipe": "Putra",
+    "hargaBulanan": 850000,
+    "kamarMandiDalam": false,
+    "jarakKm": 3.2,
+    "diperbarui": "2026-11-08T09:00:00.000Z"
+  },
+  {
+    "id": "k08",
+    "nama": "Paviliun Dayeuhkolot",
+    "area": "Dayeuhkolot",
+    "tipe": "Putri",
+    "hargaBulanan": 1200000,
+    "kamarMandiDalam": true,
+    "jarakKm": 4.1,
+    "diperbarui": "2026-11-08T09:00:00.000Z"
+  },
+  {
+    "id": "k09",
+    "nama": "Kost PGA Residence",
+    "area": "Bojongsoang",
+    "tipe": "Putra",
+    "hargaBulanan": 1000000,
+    "kamarMandiDalam": true,
+    "jarakKm": 2.6,
+    "diperbarui": "2026-11-08T09:00:00.000Z"
+  },
+  {
+    "id": "k10",
+    "nama": "Kost Permata Sukapura",
+    "area": "Sukapura",
+    "tipe": "Campur",
+    "hargaBulanan": 1750000,
+    "kamarMandiDalam": true,
+    "jarakKm": 0.9,
+    "diperbarui": "2026-11-08T09:00:00.000Z"
+  },
+  {
+    "id": "k11",
+    "nama": "Wisma Tel-U",
+    "area": "Sukabirus",
+    "tipe": "Putri",
+    "hargaBulanan": 1500000,
+    "kamarMandiDalam": false,
+    "jarakKm": 1.1,
+    "diperbarui": "2026-11-08T09:00:00.000Z"
+  },
+  {
+    "id": "k12",
+    "nama": "Kost Ciganitri Garden",
+    "area": "Ciganitri",
+    "tipe": "Campur",
+    "hargaBulanan": 1300000,
+    "kamarMandiDalam": true,
+    "jarakKm": 2.0,
+    "diperbarui": "2026-11-08T09:00:00.000Z"
+  }
 ]
