@@ -15,8 +15,8 @@ void main() {
 
       await tester.pumpWidget(const KosDekatApp());
 
-      expect(find.text('KosDekat'), findsOneWidget);
-      final konteks = tester.element(find.text('KosDekat'));
+      expect(find.text('Masuk ke KosDekat'), findsOneWidget);
+      final konteks = tester.element(find.text('Masuk ke KosDekat'));
       expect(
         Theme.of(konteks).brightness,
         terang ? Brightness.light : Brightness.dark,
