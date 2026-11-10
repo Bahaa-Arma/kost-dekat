@@ -296,7 +296,7 @@ Detail lengkap ada di [CONTRIBUTING.md](CONTRIBUTING.md).
 | P07 http + dart-define | lib/service/kos_service.dart:8 | API_URL dari `--dart-define` |
 | P07 fromJson/toJson + konversi DateTime | lib/model/kos.dart:_ | ISO 8601 |
 | P07 FutureBuilder 3 keadaan + tombol Coba lagi | lib/halaman/tab_cari.dart:_ | memuat / gagal / berhasil |
-| P07 Minimal satu test memakai MockClient | test/kos_service_test.dart | Menguji `KosService` tanpa server |
+| P07 Test MockClient | test/kos_service_test.dart:32 | Menguji KosService tanpa server |
 
 ### 10.2 Fitur khas KosDekat (Bagian 5)
 
