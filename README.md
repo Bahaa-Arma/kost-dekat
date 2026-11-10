@@ -293,10 +293,10 @@ Detail lengkap ada di [CONTRIBUTING.md](CONTRIBUTING.md).
 | P06 Gambar aset lokal di pubspec.yaml | pubspec.yaml:_ | assets/images/ |
 | P07 `server/` shelf + shelf_router, data ≥ 12 item JSON | server/bin/server.dart:_ | server/data/kos.json: _n_ item |
 | P07 ≥ 3 endpoint GET | server/bin/server.dart:_ | `GET /kos`, `GET /kos/<id>`, `GET /area` |
-| P07 Paket `http` + `--dart-define=API_URL` | lib/service/kos_service.dart:_ | `String.fromEnvironment('API_URL')` |
+| P07 http + dart-define | lib/service/kos_service.dart:8 | API_URL dari `--dart-define` |
 | P07 fromJson/toJson + konversi DateTime | lib/model/kos.dart:_ | ISO 8601 |
 | P07 FutureBuilder 3 keadaan + tombol Coba lagi | lib/halaman/tab_cari.dart:_ | memuat / gagal / berhasil |
-| P07 Minimal satu test memakai MockClient | test/kos_service_test.dart:_ | Menguji `KosService` tanpa server |
+| P07 Minimal satu test memakai MockClient | test/kos_service_test.dart | Menguji `KosService` tanpa server |
 
 ### 10.2 Fitur khas KosDekat (Bagian 5)
 
