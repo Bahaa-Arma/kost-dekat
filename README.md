@@ -107,8 +107,14 @@ Screenshot harus diambil dari aplikasi yang berjalan pada perangkat, bukan mocku
 | P03 | `app/lib/screens/home_page.dart`; `app/lib/screens/add_review_page.dart` | StatefulWidget, TextField + controller, SegmentedButton, FilledButton, IconButton, SnackBar, rating bintang interaktif; StatelessWidget ada pada kartu/detail/profil. |
 | P04 | `app/lib/models/kos.dart`; `app/lib/widgets/kos_card.dart`; `app/lib/screens/home_page.dart` | Model memiliki 8 field termasuk bool dan DateTime; kartu memakai Row, Column, Expanded; daftar ListView.builder; NavigationBar 3 tab dan IndexedStack. |
 | P05 | `app/lib/screens/kos_detail_page.dart`; `app/lib/screens/add_review_page.dart`; `app/lib/screens/home_page.dart`; `app/test/` | Detail menerima model lewat konstruktor; form mengembalikan Map lewat Navigator.pop; hasil diterima setelah await dan dicek mounted; minimal 3 widget test dan 1 test MockClient tersedia. |
-| P06 | `app/lib/tema/tema_kosdekat.dart:5`; `app/lib/main.dart:22` | P06 ColorScheme.fromSeed + darkTheme \| lib/tema/tema_kosdekat.dart:5 \| Seed #14695C (referensi Papa Kost). ThemeData dengan ColorScheme.fromSeed (terang & gelap), font Google Fonts Plus Jakarta Sans, cardTheme, filledButtonTheme, navigationBarTheme, switch mode gelap di profil. |
+| P06 | `app/lib/tema/tema_kosdekat.dart:5`; `app/lib/main.dart:22` | P06 ColorScheme.fromSeed + darkTheme \| lib/tema/tema_kosdekat.dart:5 \| Seed #14695C (referensi Papa Kost). ThemeData dengan ColorScheme.fromSeed (terang & gelap), font PlusJakartaSans (lokal + Google Fonts), cardTheme, filledButtonTheme, navigationBarTheme, switch mode gelap di profil. P06 Warna dari colorScheme \| Pengecualian: `lib/tema/tema_kosdekat.dart:5` → `Color(0xFF14695C)` (warna seed, 1 dari maks. 3). Seluruh widget memakai `Theme.of(context).colorScheme.*`, nol `Colors.xxx`. |
 | P07 | `server/bin/server.dart`; `server/data/kos.json`; `app/lib/services/api_service.dart`; `app/lib/models/kos.dart`; `app/lib/screens/home_page.dart`; `app/test/api_service_test.dart` | Shelf API dengan GET `/kos`, `/kos/<id>`, `/area`; 12 data JSON; API_URL via dart-define; fromJson/toJson; FutureBuilder tiga keadaan dan tombol Coba lagi; MockClient test. |
+
+## Tabel nilai tambah
+
+| Fitur Nilai Tambah | File:baris | Keterangan |
+|---|---|---|
+| POST ulasan ke server (+5) | `server/bin/server.dart:52` (router.post /ulasan); `app/lib/services/api_service.dart:35` (kirimUlasan); `app/lib/models/ulasan.dart` | Endpoint POST /ulasan + GET /ulasan di server (penyimpanan in-memory, validasi kosId/rating/komentar, respons 201). Model Ulasan dengan toJson/fromJson. `ApiService.kirimUlasan()` kirim JSON via http.post, lempar Exception jika bukan 201. Di home_page: ulasan disimpan lokal dulu (P05 tetap terpenuhi), lalu POST ke server; SnackBar "Ulasan terkirim ke server!" / "Gagal mengirim, ulasan disimpan di perangkat." tanpa crash. 3 test MockClient (GET kos, POST 201, POST 400). |
 
 ## Catatan implementasi
 - Form ulasan menyimpan ulasan ke state aplikasi (sementara/in-memory), belum ke server/database.

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/kos.dart';
+import '../models/ulasan.dart';
 import '../services/api_service.dart';
 import '../widgets/kos_card.dart';
 import 'add_review_page.dart';
@@ -44,9 +45,27 @@ class _HomePageState extends State<HomePage> {
                 AddReviewPage(kosNames: kos.map((e) => e.nama).toList())));
     if (!mounted) return;
     if (result != null) {
+      // Simpan ke state lokal terlebih dahulu (syarat P05 tetap terpenuhi).
       setState(() => _reviews = [..._reviews, result]);
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Ulasan berhasil ditambahkan!')));
+
+      // Kirim ke server secara terpisah — tidak boleh crash walau server mati.
+      final ulasan = Ulasan(
+        kosId: result['kosId'] as String? ?? '',
+        namaKos: result['namaKos'] as String? ?? '',
+        rating: result['rating'] as int? ?? 0,
+        komentar: result['komentar'] as String? ?? '',
+        tanggal: DateTime.now(),
+      );
+      try {
+        await widget.api.kirimUlasan(ulasan);
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Ulasan terkirim ke server!')));
+      } catch (_) {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text('Gagal mengirim, ulasan disimpan di perangkat.')));
+      }
     }
   }
 

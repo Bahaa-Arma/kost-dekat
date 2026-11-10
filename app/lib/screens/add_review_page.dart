@@ -80,6 +80,7 @@ class _AddReviewPageState extends State<AddReviewPage> {
                     return;
                   }
                   Navigator.pop(context, {
+                    'kosId': _selectedKos ?? '',
                     'namaKos': _selectedKos,
                     'rating': _rating,
                     'komentar': _comment.text.trim(),

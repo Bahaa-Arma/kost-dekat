@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/kos.dart';
+import '../models/ulasan.dart';
 
 class ApiService {
   ApiService({http.Client? client, required this.baseUrl})
@@ -27,6 +28,21 @@ class ApiService {
     _check(response);
     return (jsonDecode(response.body) as List<dynamic>)
         .cast<Map<String, dynamic>>();
+  }
+
+  /// Kirim ulasan ke server. Lempar [Exception] jika status bukan 201.
+  Future<Ulasan> kirimUlasan(Ulasan ulasan) async {
+    final response = await _client.post(
+      Uri.parse('$baseUrl/ulasan'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(ulasan.toJson()),
+    );
+    if (response.statusCode != 201) {
+      throw Exception(
+          'Server mengembalikan status ${response.statusCode}: ${response.body}');
+    }
+    return Ulasan.fromJson(
+        jsonDecode(response.body) as Map<String, dynamic>);
   }
 
   void _check(http.Response response) {
