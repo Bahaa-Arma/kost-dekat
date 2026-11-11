@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../model/kos.dart';
+import '../widget/kartu_kos.dart';
 
 /// Tab Favorit yang menampilkan daftar kos yang telah ditandai pengguna.
 /// Bagian dari SCRUM-31 (A4) yang mengonsumsi state bersama dari HalamanUtama.
@@ -64,18 +65,10 @@ class TabFavorit extends StatelessWidget {
               )
             else
               ...listKos.map(
-                (kos) => Card(
-                  margin: const EdgeInsets.only(bottom: 12),
-                  child: ListTile(
-                    leading: const Icon(Icons.favorite),
-                    title: Text(kos.nama),
-                    subtitle: Text('${kos.area} • ${kos.tipe}'),
-                    trailing: IconButton(
-                      tooltip: 'Hapus favorit',
-                      icon: Icon(Icons.favorite, color: warna.error),
-                      onPressed: () => onToggleFavorit?.call(kos.id),
-                    ),
-                  ),
+                (kos) => KartuKos(
+                  kos: kos,
+                  isFavorit: true,
+                  onToggleFavorit: () => onToggleFavorit?.call(kos.id),
                 ),
               ),
           ],

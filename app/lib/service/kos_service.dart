@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 
 import '../model/kos.dart';
 import '../model/ringkasan_area.dart';
+import '../model/ulasan.dart';
 
 const String apiUrl = String.fromEnvironment(
   'API_URL',
@@ -35,6 +36,22 @@ class KosService {
     return data
         .map((item) => RingkasanArea.fromJson(item as Map<String, dynamic>))
         .toList();
+  }
+
+  Future<Ulasan> kirimUlasan(Ulasan ulasan) async {
+    final response = await _client
+        .post(
+          Uri.parse('$_baseUrl/ulasan'),
+          headers: {'Content-Type': 'application/json'},
+          body: jsonEncode(ulasan.toJson()),
+        )
+        .timeout(const Duration(seconds: 8));
+    if (response.statusCode != 201) {
+      throw Exception('Gagal mengirim ulasan: status ${response.statusCode}');
+    }
+    return Ulasan.fromJson(
+      jsonDecode(utf8.decode(response.bodyBytes)) as Map<String, dynamic>,
+    );
   }
 
   void dispose() => _client.close();
