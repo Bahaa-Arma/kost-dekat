@@ -30,6 +30,13 @@ class TabFavorit extends StatelessWidget {
           children: [
             Text('Favorit', style: teks.headlineMedium),
             const SizedBox(height: 8),
+            const SizedBox(height: 16),
+            Image.asset(
+              'assets/kos_illustration.png',
+              height: 160,
+              excludeFromSemantics: true,
+            ),
+            const SizedBox(height: 16),
             Text(
               'Belum ada kos favorit yang ditandai.',
               style: teks.bodyMedium?.copyWith(color: warna.onSurfaceVariant),
@@ -63,6 +70,18 @@ class TabFavorit extends StatelessWidget {
                   kos: kos,
                   isFavorit: true,
                   onToggleFavorit: () => onToggleFavorit?.call(kos.id),
+                (kos) => Card(
+                  margin: const EdgeInsets.only(bottom: 12),
+                  child: ListTile(
+                    leading: const Icon(Icons.favorite),
+                    title: Text(kos.nama),
+                    subtitle: Text('${kos.area} • ${kos.tipe}'),
+                    trailing: IconButton(
+                      tooltip: 'Hapus favorit',
+                      icon: Icon(Icons.favorite, color: warna.error),
+                      onPressed: () => onToggleFavorit?.call(kos.id),
+                    ),
+                  ),
                 ),
               ),
           ],

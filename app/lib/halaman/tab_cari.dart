@@ -98,3 +98,28 @@ class TabCari extends StatelessWidget {
     );
   }
 }
+            return Card(
+              margin: const EdgeInsets.only(bottom: 12),
+              child: ListTile(
+                leading: const Icon(Icons.apartment),
+                title: Text(kos.nama),
+                subtitle: Text(
+                  '${kos.area} • ${kos.tipe} • Rp${kos.hargaBulanan}/bln',
+                ),
+                trailing: IconButton(
+                  tooltip: isFav ? 'Hapus favorit' : 'Tambah favorit',
+                  icon: Icon(
+                    isFav ? Icons.favorite : Icons.favorite_border,
+                    color: isFav ? warna.error : null,
+                  ),
+                  onPressed: () => onToggleFavorit?.call(kos.id),
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+}
+

@@ -22,6 +22,16 @@ class KosDekatApp extends StatelessWidget {
       darkTheme: temaGelap,
       themeMode: ThemeMode.system,
       home: home ?? HalamanLogin(kosService: kosService),
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: themeModeNotifier,
+      builder: (context, mode, _) => MaterialApp(
+        title: 'KosDekat',
+        debugShowCheckedModeBanner: false,
+        theme: temaTerang,
+        darkTheme: temaGelap,
+        themeMode: mode,
+        home: home ?? HalamanLogin(kosService: kosService),
+      ),
     );
   }
 }

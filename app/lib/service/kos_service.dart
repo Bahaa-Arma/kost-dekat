@@ -53,6 +53,7 @@ class KosService {
       jsonDecode(utf8.decode(response.bodyBytes)) as Map<String, dynamic>,
     );
   }
+  void dispose() => _client.close();
 
   Future<Object?> _ambilJson(String path) async {
     final response = await _client

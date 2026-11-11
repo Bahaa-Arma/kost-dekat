@@ -1,0 +1,1 @@
+Letakkan minimal 4 screenshot asli dari emulator/HP Android di folder ini. Lihat petunjuk di README.md.
