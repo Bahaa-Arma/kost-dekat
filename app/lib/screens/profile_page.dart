@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../tema/tema_kosdekat.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -35,7 +36,8 @@ class ProfilePage extends StatelessWidget {
         ValueListenableBuilder<ThemeMode>(
           valueListenable: themeModeNotifier,
           builder: (context, currentMode, _) {
-            final isDark = currentMode == ThemeMode.dark ||
+            final isDark =
+                currentMode == ThemeMode.dark ||
                 (currentMode == ThemeMode.system &&
                     MediaQuery.platformBrightnessOf(context) ==
                         Brightness.dark);
@@ -52,8 +54,9 @@ class ProfilePage extends StatelessWidget {
               ),
               value: isDark,
               onChanged: (val) {
-                themeModeNotifier.value =
-                    val ? ThemeMode.dark : ThemeMode.light;
+                themeModeNotifier.value = val
+                    ? ThemeMode.dark
+                    : ThemeMode.light;
               },
             );
           },
