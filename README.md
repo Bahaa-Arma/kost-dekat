@@ -128,21 +128,18 @@ Detail lengkap ada di [CONTRIBUTING.md](CONTRIBUTING.md).
 | P01–P02 Berjalan di emulator/HP Android, ≥ 4 tangkapan layar dari perangkat | screenshots/ | _n_ tangkapan layar dari _emulator/HP_ |
 | P01–P02 `flutter analyze` bersih (tanpa error maupun warning) | - | No issues found! |
 | P03 StatelessWidget & StatefulWidget buatan sendiri, setState mengubah tampilan | lib/_:_ | _ |
-| P03 TextField + TextEditingController di-dispose | lib/halaman/halaman_form_ulasan.dart:_ | Komentar ulasan |
+| P03 TextField + TextEditingController di-dispose | lib/halaman/halaman_form_ulasan.dart:35 | komentar & nama kos |
 | P03 ≥ 2 jenis tombol Material 3 | lib/_:_ | FilledButton, IconButton, FloatingActionButton |
 | P03 ChoiceChip / FilterChip / SegmentedButton | lib/halaman/tab_cari.dart:_ | SegmentedButton tipe kos |
-| P03 SnackBar | lib/_:_ | "Ulasan tersimpan" |
+| P03 SnackBar | lib/halaman/halaman_detail_kos.dart:61 | "Ulasan tersimpan" |
 | P04 Model ≥ 6 field (DateTime & bool) | lib/model/kos.dart:_ | 8 field, `diperbarui` DateTime, `kamarMandiDalam` bool |
 | P04 Kartu buatan sendiri (Row, Column, Expanded, Stack) | lib/widget/kartu_kos.dart:55-190 | `KartuKos` |
 | P04 ListView.builder | lib/halaman/tab_cari.dart:_ | Daftar kos |
 | P04 NavigationBar ≥ 3 tab + IndexedStack | lib/halaman/halaman_utama.dart:73-112 | Cari · Favorit · Profil |
 | P05 Halaman detail menerima objek lewat konstruktor | lib/halaman/halaman_detail_kos.dart:12-19 + lib/widget/kartu_kos.dart:35 | `HalamanDetailKos(kos: ...)` |
-| P05 Form tambah → `Navigator.pop(context, data)` → `await` → muncul di daftar | lib/halaman/halaman_detail_kos.dart:_ | Ulasan tampil di Detail & Profil |
-| P05 Cek `mounted` setelah `await` | lib/halaman/halaman_detail_kos.dart:59 | `if (!mounted) return;` |
+| P05 Form tambah → `Navigator.pop(context, data)` → `await` → muncul di daftar | lib/halaman/halaman_detail_kos.dart:51 + lib/halaman/halaman_form_ulasan.dart:48 | Ulasan tampil di Detail & Profil |
+| P05 Cek `mounted` setelah `await` | lib/halaman/halaman_detail_kos.dart:57 | `if (!mounted) return;` |
 | P05 ≥ 3 widget test di `test/`, `flutter test` lulus semua | test/widget_test.dart:_ | _n_ widget test |
-| P05 Halaman detail menerima objek lewat konstruktor | lib/halaman/halaman_detail_kos.dart:_ | `HalamanDetailKos(kos: ...)` |
-| P05 Form tambah → `Navigator.pop(context, data)` → `await` → muncul di daftar | lib/halaman/halaman_detail_kos.dart:_ | Ulasan tampil di Detail & Profil |
-| P05 Cek `mounted` setelah `await` | lib/halaman/halaman_detail_kos.dart:_ | `if (!mounted) return;` |
 | P05 ≥3 widget test | `test/widget_test.dart:10,29` dan `test/halaman_login_test.dart:30,43,54,78,105` | 8 widget test (2 tema, 1 kartu kos, 5 login dan Profil) |
 | P06 ColorScheme.fromSeed + darkTheme | lib/tema/tema_kosdekat.dart:_ | Seed `#______` |
 | P06 Warna dari `Theme.of(context).colorScheme` (≤ 3 pengecualian) | lib/_:_ | Pengecualian: warna bintang |

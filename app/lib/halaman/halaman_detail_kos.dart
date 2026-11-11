@@ -48,24 +48,19 @@ class _HalamanDetailKosState extends State<HalamanDetailKos> {
   }
 
   Future<void> _tulisUlasan() async {
-    final ulasanBaru = await Navigator.push<Ulasan>(
+    final Ulasan? hasil = await Navigator.push<Ulasan>(
       context,
       MaterialPageRoute(
-        builder: (_) =>
-            HalamanFormUlasan(kosId: widget.kos.id, namaKos: widget.kos.nama),
+        builder: (_) => HalamanFormUlasan(kos: widget.kos),
       ),
     );
-
-    if (!mounted) return;
-
-    if (ulasanBaru != null) {
-      setState(() {
-        _ulasanKos.insert(0, ulasanBaru);
-      });
-      widget.onUlasanBaru?.call(ulasanBaru);
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('Ulasan tersimpan')));
-    }
+    if (!mounted) return; // P05: cek mounted setelah await
+    if (hasil == null) return; // pengguna menekan back
+    setState(() => _ulasanKos.insert(0, hasil)); // langsung muncul di daftar
+    widget.onUlasanBaru?.call(hasil); // simpan di HalamanUtama → tab Profil
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Ulasan tersimpan')),
+    );
   }
 
   double get _rataRataRating {
