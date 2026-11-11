@@ -127,7 +127,7 @@ Detail lengkap ada di [CONTRIBUTING.md](CONTRIBUTING.md).
 | P01–P02 Nama aplikasi di launcher sesuai tema (bukan `flutter_application_1`) | android/app/src/main/AndroidManifest.xml:_ | Label "KosDekat" |
 | P01–P02 Berjalan di emulator/HP Android, ≥ 4 tangkapan layar dari perangkat | screenshots/ | _n_ tangkapan layar dari _emulator/HP_ |
 | P01–P02 `flutter analyze` bersih (tanpa error maupun warning) | - | No issues found! |
-| P03 StatelessWidget & StatefulWidget buatan sendiri, setState mengubah tampilan | lib/halaman/tab_profil.dart:9 + lib/halaman/halaman_utama.dart:28 | TabProfil (Stateless) & HalamanUtama (Stateful) |
+| P03 StatelessWidget & StatefulWidget + setState | lib/widget/kartu_kos.dart:11 (Stateless), lib/halaman/halaman_form_ulasan.dart:8,80 (Stateful + setState bintang) | KartuKos (Stateless) & HalamanFormUlasan (Stateful); setState mengetuk bintang mengubah tampilan bintang rating |
 | P03 TextField + TextEditingController di-dispose | lib/halaman/halaman_form_ulasan.dart:28 | komentar & nama kos |
 | Fitur khas: Form ulasan + bintang | lib/halaman/halaman_form_ulasan.dart:68 | 5 IconButton bintang yang bisa diketuk |
 | P03 ≥ 2 jenis tombol Material 3 | lib/halaman/halaman_form_ulasan.dart:112, lib/widget/kartu_kos.dart:120, lib/halaman/halaman_detail_kos.dart:318 | FilledButton ("Kirim Ulasan"), IconButton (hati favorit), FloatingActionButton.extended ("Tulis Ulasan"); juga OutlinedButton "Keluar" di tab_profil.dart:92 |
@@ -197,7 +197,7 @@ Screenshot harus diambil dari aplikasi yang berjalan pada perangkat, bukan mocku
 |---|---|---|
 | P01 | `app/pubspec.yaml`; `app/android/app/src/main/AndroidManifest.xml` (dibuat oleh `flutter create`) | Identitas aplikasi KosDekat; package org `id.ac.telkomuniversity`; label launcher KosDekat. Jalankan pada emulator/HP dan lampirkan screenshot. |
 | P02 | `app/assets/kosdekat_logo.png`; `README.md` | Ikon aplikasi disiapkan melalui `flutter_launcher_icons`; screenshot perangkat disimpan di `screenshots/`. |
-| P03 | `app/lib/screens/home_page.dart`; `app/lib/screens/add_review_page.dart` | StatefulWidget, TextField + controller, SegmentedButton, FilledButton, IconButton, SnackBar, rating bintang interaktif; StatelessWidget ada pada kartu/detail/profil. |
+| P03 | `app/lib/widget/kartu_kos.dart:11`; `app/lib/halaman/halaman_form_ulasan.dart:8,80`; `app/lib/halaman/halaman_utama.dart:12,111` | StatelessWidget buatan sendiri (KartuKos, TabProfil), StatefulWidget buatan sendiri (HalamanFormUlasan, HalamanUtama, HalamanDetailKos); setState mengubah tampilan secara nyata (rating bintang, tab navigation, toggle favorit). |
 | P04 | `app/lib/models/kos.dart`; `app/lib/widgets/kos_card.dart`; `app/lib/screens/home_page.dart` | Model memiliki 8 field termasuk bool dan DateTime; kartu memakai Row, Column, Expanded; daftar ListView.builder; NavigationBar 3 tab dan IndexedStack. |
 | P05 | `app/lib/screens/kos_detail_page.dart`; `app/lib/screens/add_review_page.dart`; `app/lib/screens/home_page.dart`; `app/test/` | Detail menerima model lewat konstruktor; form mengembalikan Map lewat Navigator.pop; hasil diterima setelah await dan dicek mounted; minimal 3 widget test dan 1 test MockClient tersedia. |
 | P06 | `app/lib/tema/tema_kosdekat.dart:5`; `app/lib/main.dart:22` | P06 ColorScheme.fromSeed + darkTheme \| lib/tema/tema_kosdekat.dart:5 \| Seed #14695C (referensi Papa Kost). ThemeData dengan ColorScheme.fromSeed (terang & gelap), font Google Fonts Plus Jakarta Sans, cardTheme, filledButtonTheme, navigationBarTheme, switch mode gelap di profil. |
