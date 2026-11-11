@@ -281,7 +281,7 @@ Detail lengkap ada di [CONTRIBUTING.md](CONTRIBUTING.md).
 | P04 Model ≥ 6 field (DateTime & bool) | lib/model/kos.dart:_ | 8 field, `diperbarui` DateTime, `kamarMandiDalam` bool |
 | P04 Kartu buatan sendiri (Row, Column, Expanded, Stack) | lib/widget/kartu_kos.dart:_ | `KartuKos` |
 | P04 ListView.builder | lib/halaman/tab_cari.dart:_ | Daftar kos |
-| P04 NavigationBar ≥ 3 tab + IndexedStack | lib/halaman/halaman_utama.dart:_ | Cari · Favorit · Profil |
+| P04 NavigationBar ≥ 3 tab + IndexedStack | lib/halaman/halaman_utama.dart:73-112 | Cari · Favorit · Profil |
 | P05 Halaman detail menerima objek lewat konstruktor | lib/halaman/halaman_detail_kos.dart:_ | `HalamanDetailKos(kos: ...)` |
 | P05 Form tambah → `Navigator.pop(context, data)` → `await` → muncul di daftar | lib/halaman/halaman_detail_kos.dart:_ | Ulasan tampil di Detail & Profil |
 | P05 Cek `mounted` setelah `await` | lib/halaman/halaman_detail_kos.dart:_ | `if (!mounted) return;` |
@@ -304,7 +304,7 @@ Detail lengkap ada di [CONTRIBUTING.md](CONTRIBUTING.md).
 | Poin | File:baris | Keterangan |
 |------|-----------|------------|
 | Model `Kos` sesuai tema | lib/model/kos.dart:_ | id, nama, area, tipe, hargaBulanan, kamarMandiDalam, jarakKm, diperbarui |
-| Tab Cari · Favorit · Profil | lib/halaman/halaman_utama.dart:_ | |
+| Tab Cari · Favorit · Profil | lib/halaman/halaman_utama.dart:73-112 | NavigationBar 3 tab + IndexedStack |
 | Form ulasan: nama kos, rating 1–5 bintang yang bisa diketuk, komentar | lib/halaman/halaman_form_ulasan.dart:_ | Model `Ulasan` terpisah |
 | SegmentedButton Putra/Putri/Campur | lib/halaman/tab_cari.dart:_ | |
 | Urutan berdasarkan harga atau jarak | lib/halaman/tab_cari.dart:_ | Termurah / Terdekat |
