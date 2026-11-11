@@ -8,10 +8,14 @@ class TabProfil extends StatelessWidget {
     super.key,
     required this.namaPengguna,
     required this.emailPengguna,
+    this.daftarUlasan = const [],
   });
 
   final String namaPengguna;
   final String emailPengguna;
+
+  /// Ulasan yang sudah ditambahkan pengguna (dari HalamanUtama).
+  final List<dynamic> daftarUlasan;
 
   String get _inisial => namaPengguna
       .trim()

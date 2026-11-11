@@ -3,15 +3,56 @@ import 'package:flutter/material.dart';
 import '../model/kos.dart';
 import '../utils/format_rupiah.dart';
 
-class DetailKosPage extends StatelessWidget {
+class DetailKosPage extends StatefulWidget {
   final Kos kos;
+  final bool isFavorit;
+  final VoidCallback? onToggleFavorit;
 
-  const DetailKosPage({super.key, required this.kos});
+  const DetailKosPage({
+    super.key,
+    required this.kos,
+    this.isFavorit = false,
+    this.onToggleFavorit,
+  });
+
+  @override
+  State<DetailKosPage> createState() => _DetailKosPageState();
+}
+
+class _DetailKosPageState extends State<DetailKosPage> {
+  late bool _isFavorit;
+
+  @override
+  void initState() {
+    super.initState();
+    _isFavorit = widget.isFavorit;
+  }
+
+  void _handleToggleFavorit() {
+    setState(() {
+      _isFavorit = !_isFavorit;
+    });
+    widget.onToggleFavorit?.call();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final kos = widget.kos;
     return Scaffold(
-      appBar: AppBar(title: Text(kos.nama)),
+      appBar: AppBar(
+        title: Text(kos.nama),
+        actions: [
+          if (widget.onToggleFavorit != null)
+            IconButton(
+              tooltip: _isFavorit ? 'Hapus dari Favorit' : 'Tambah ke Favorit',
+              icon: Icon(
+                _isFavorit ? Icons.favorite : Icons.favorite_border,
+                color: _isFavorit ? Theme.of(context).colorScheme.error : null,
+              ),
+              onPressed: _handleToggleFavorit,
+            ),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -23,6 +64,12 @@ class DetailKosPage extends StatelessWidget {
                 width: double.infinity,
                 height: 250,
                 fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) => Container(
+                  width: double.infinity,
+                  height: 250,
+                  color: Colors.grey[300],
+                  child: const Icon(Icons.image_not_supported, size: 48),
+                ),
               ),
             ),
             Padding(

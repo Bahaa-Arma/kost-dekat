@@ -7,7 +7,20 @@ class KartuKost extends StatelessWidget {
   final Kos kos;
   final VoidCallback onTap;
 
-  const KartuKost({super.key, required this.kos, required this.onTap});
+  /// Apakah kos ini sudah difavoritkan. Memengaruhi ikon hati.
+  final bool isFavorit;
+
+  /// Dipanggil saat pengguna mengetuk tombol favorit (hati).
+  /// Bila null, tombol favorit tidak ditampilkan.
+  final VoidCallback? onToggleFavorit;
+
+  const KartuKost({
+    super.key,
+    required this.kos,
+    required this.onTap,
+    this.isFavorit = false,
+    this.onToggleFavorit,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -69,14 +82,43 @@ class KartuKost extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      kos.nama,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+                    // Nama kos + tombol favorit (hati)
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            kos.nama,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        if (onToggleFavorit != null)
+                          SizedBox(
+                            height: 32,
+                            width: 32,
+                            child: IconButton(
+                              padding: EdgeInsets.zero,
+                              tooltip: isFavorit
+                                  ? 'Hapus dari Favorit'
+                                  : 'Tambah ke Favorit',
+                              icon: Icon(
+                                isFavorit
+                                    ? Icons.favorite
+                                    : Icons.favorite_border,
+                                size: 20,
+                                color: isFavorit
+                                    ? Theme.of(context).colorScheme.error
+                                    : Theme.of(context).colorScheme.onSurface,
+                              ),
+                              onPressed: onToggleFavorit,
+                            ),
+                          ),
+                      ],
                     ),
                     const SizedBox(height: 4),
                     Row(

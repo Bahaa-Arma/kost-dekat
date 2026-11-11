@@ -1,18 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
+import '../model/kos.dart';
+import '../model/ulasan.dart';
+import '../service/kos_service.dart';
+import '../pages/detail_kos_page.dart';
+import '../pages/tab_cari_page.dart';
+import 'tab_favorit.dart';
 import 'tab_profil.dart';
 
 /// Pemilik state tab. NavigationBar + IndexedStack agar keadaan tiap tab tetap.
-// shortcut: belum menerima KosService dan tab Cari/Favorit masih placeholder; lengkapi di SCRUM-19, 22, 27, 31.
 class HalamanUtama extends StatefulWidget {
   const HalamanUtama({
     super.key,
     this.namaPengguna = 'Mahasiswa Tel-U',
     this.emailPengguna = '',
+    this.kosService,
   });
 
   final String namaPengguna;
   final String emailPengguna;
+
+  /// KosService opsional — untuk widget test bisa menyuntikkan service palsu.
+  final KosService? kosService;
 
   @override
   State<HalamanUtama> createState() => _HalamanUtamaState();
@@ -21,6 +31,54 @@ class HalamanUtama extends StatefulWidget {
 class _HalamanUtamaState extends State<HalamanUtama> {
   int _indeksTab = 0;
 
+  // State bersama antar-tab (pemilik data)
+  late Future<List<Kos>> _futureKos;
+  final Set<String> _idFavorit = {};
+  final List<Ulasan> _daftarUlasan = [];
+
+  late final KosService _kosService;
+
+  @override
+  void initState() {
+    super.initState();
+    _kosService = widget.kosService ?? KosService(client: http.Client());
+    _futureKos = _kosService.ambilDaftarKos();
+  }
+
+  /// Toggle favorit: tambah jika belum ada, hapus jika sudah ada.
+  void toggleFavorit(String id) {
+    final ditambah = !_idFavorit.contains(id);
+    setState(() {
+      if (ditambah) {
+        _idFavorit.add(id);
+      } else {
+        _idFavorit.remove(id);
+      }
+    });
+    final messenger = ScaffoldMessenger.of(context);
+    messenger.clearSnackBars();
+    messenger.showSnackBar(
+      SnackBar(
+        content: Text(
+          ditambah ? 'Ditambahkan ke Favorit' : 'Dihapus dari Favorit',
+        ),
+        duration: const Duration(seconds: 2),
+      ),
+    );
+  }
+
+  /// Simpan ulasan baru dari HalamanDetailKos.
+  void tambahUlasan(Ulasan u) {
+    setState(() => _daftarUlasan.add(u));
+  }
+
+  /// Muat ulang data dari server.
+  void muatUlang() {
+    setState(() {
+      _futureKos = _kosService.ambilDaftarKos();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,11 +86,35 @@ class _HalamanUtamaState extends State<HalamanUtama> {
         child: IndexedStack(
           index: _indeksTab,
           children: [
-            const _TabSementara(judul: 'Cari kos', tiket: 'SCRUM-22'),
-            const _TabSementara(judul: 'Favorit', tiket: 'SCRUM-31'),
+            // Tab 0 — Cari (pakai TabCariPage yang sudah ada)
+            TabCariPage(
+              futureKos: _futureKos,
+              idFavorit: _idFavorit,
+              onToggleFavorit: toggleFavorit,
+              onMuatUlang: muatUlang,
+            ),
+            // Tab 1 — Favorit: filter dari data yang sama, tidak panggil server
+            TabFavorit(
+              futureKos: _futureKos,
+              idFavorit: _idFavorit,
+              onToggleFavorit: toggleFavorit,
+              onTapKos: (kos) {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => DetailKosPage(
+                      kos: kos,
+                      isFavorit: _idFavorit.contains(kos.id),
+                      onToggleFavorit: () => toggleFavorit(kos.id),
+                    ),
+                  ),
+                );
+              },
+            ),
+            // Tab 2 — Profil
             TabProfil(
               namaPengguna: widget.namaPengguna,
               emailPengguna: widget.emailPengguna,
+              daftarUlasan: _daftarUlasan,
             ),
           ],
         ),
@@ -51,34 +133,6 @@ class _HalamanUtamaState extends State<HalamanUtama> {
             icon: Icon(Icons.person_outline),
             selectedIcon: Icon(Icons.person),
             label: 'Profil',
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _TabSementara extends StatelessWidget {
-  const _TabSementara({required this.judul, required this.tiket});
-
-  final String judul;
-  final String tiket;
-
-  @override
-  Widget build(BuildContext context) {
-    final teks = Theme.of(context).textTheme;
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 24, 16, 16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(judul, style: teks.headlineMedium),
-          const SizedBox(height: 8),
-          Text(
-            'Bagian ini sedang dibuat ($tiket).',
-            style: teks.bodyMedium?.copyWith(
-              color: Theme.of(context).colorScheme.onSurfaceVariant,
-            ),
           ),
         ],
       ),
