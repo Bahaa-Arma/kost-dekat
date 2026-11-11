@@ -13,7 +13,8 @@ void main() {
       expect(warnaSeed, const Color(0xFF14695C));
     });
 
-    testWidgets('temaTerang memiliki ColorScheme light dan konfigurasi komponen',
+    testWidgets(
+        'temaTerang memiliki ColorScheme light dan konfigurasi komponen',
         (tester) async {
       expect(temaTerang.colorScheme.brightness, Brightness.light);
       expect(temaTerang.useMaterial3, isTrue);
@@ -49,15 +50,15 @@ void main() {
         BorderRadius.circular(16),
       );
 
-      final buttonShape =
-          temaGelap.filledButtonTheme.style?.shape?.resolve({});
+      final buttonShape = temaGelap.filledButtonTheme.style?.shape?.resolve({});
       expect(buttonShape, isA<RoundedRectangleBorder>());
 
       final navIndicator = temaGelap.navigationBarTheme.indicatorShape;
       expect(navIndicator, isA<RoundedRectangleBorder>());
     });
 
-    testWidgets('Komponen tombol dan kartu dapat dirender dalam mode terang dan gelap',
+    testWidgets(
+        'Komponen tombol dan kartu dapat dirender dalam mode terang dan gelap',
         (tester) async {
       await tester.pumpWidget(MaterialApp(
         theme: temaTerang,

@@ -118,9 +118,8 @@ class KartuKos extends StatelessWidget {
                           ),
                         ),
                         IconButton(
-                          tooltip: isFavorit
-                              ? 'Hapus favorit'
-                              : 'Tambah favorit',
+                          tooltip:
+                              isFavorit ? 'Hapus favorit' : 'Tambah favorit',
                           icon: Icon(
                             isFavorit ? Icons.favorite : Icons.favorite_border,
                             color: isFavorit ? warna.error : null,

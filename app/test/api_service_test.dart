@@ -8,12 +8,21 @@ void main() {
   test('ApiService membaca daftar kos dari MockClient', () async {
     final mock = MockClient((request) async {
       expect(request.url.path, '/kos');
-      return http.Response(jsonEncode([{
-        'id': 'k01', 'nama': 'Kos Mock', 'area': 'Sukapura',
-        'tipe': 'Putra', 'hargaBulanan': 1000000,
-        'kamarMandiDalam': true, 'jarakKm': 1.0,
-        'diperbarui': '2026-11-08T09:00:00.000Z'
-      }]), 200, headers: {'content-type': 'application/json'});
+      return http.Response(
+          jsonEncode([
+            {
+              'id': 'k01',
+              'nama': 'Kos Mock',
+              'area': 'Sukapura',
+              'tipe': 'Putra',
+              'hargaBulanan': 1000000,
+              'kamarMandiDalam': true,
+              'jarakKm': 1.0,
+              'diperbarui': '2026-11-08T09:00:00.000Z'
+            }
+          ]),
+          200,
+          headers: {'content-type': 'application/json'});
     });
     final service = ApiService(client: mock, baseUrl: 'http://localhost:8080');
     final result = await service.getKos();

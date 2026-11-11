@@ -227,8 +227,8 @@ void main() {
         findsOneWidget,
       );
       expect(ulasanDiterima, isNotNull);
-      expect(ulasanDiterima?.komentar, 'Kosnya sangat rekomendasi untuk mahasiswa baru.');
+      expect(ulasanDiterima?.komentar,
+          'Kosnya sangat rekomendasi untuk mahasiswa baru.');
     },
   );
 }
-

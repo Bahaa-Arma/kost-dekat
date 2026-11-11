@@ -13,8 +13,8 @@ const String apiUrl = String.fromEnvironment(
 
 class KosService {
   KosService({http.Client? client, String baseUrl = apiUrl})
-    : _client = client ?? http.Client(),
-      _baseUrl = baseUrl.replaceFirst(RegExp(r'/+$'), '');
+      : _client = client ?? http.Client(),
+        _baseUrl = baseUrl.replaceFirst(RegExp(r'/+$'), '');
 
   final http.Client _client;
   final String _baseUrl;

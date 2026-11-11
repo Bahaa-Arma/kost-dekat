@@ -10,8 +10,8 @@ class RingkasanArea {
   final int hargaRataRata;
 
   factory RingkasanArea.fromJson(Map<String, dynamic> json) => RingkasanArea(
-    area: json['area'] as String,
-    jumlahKos: json['jumlahKos'] as int,
-    hargaRataRata: json['hargaRataRata'] as int,
-  );
+        area: json['area'] as String,
+        jumlahKos: json['jumlahKos'] as int,
+        hargaRataRata: json['hargaRataRata'] as int,
+      );
 }

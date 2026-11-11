@@ -14,18 +14,18 @@ class Ulasan {
   final DateTime tanggal;
 
   factory Ulasan.fromJson(Map<String, dynamic> json) => Ulasan(
-    kosId: json['kosId'] as String,
-    namaKos: json['namaKos'] as String? ?? '',
-    rating: (json['rating'] as num).toInt(),
-    komentar: json['komentar'] as String,
-    tanggal: DateTime.parse(json['tanggal'] as String),
-  );
+        kosId: json['kosId'] as String,
+        namaKos: json['namaKos'] as String? ?? '',
+        rating: (json['rating'] as num).toInt(),
+        komentar: json['komentar'] as String,
+        tanggal: DateTime.parse(json['tanggal'] as String),
+      );
 
   Map<String, dynamic> toJson() => {
-    'kosId': kosId,
-    'namaKos': namaKos,
-    'rating': rating,
-    'komentar': komentar,
-    'tanggal': tanggal.toIso8601String(),
-  };
+        'kosId': kosId,
+        'namaKos': namaKos,
+        'rating': rating,
+        'komentar': komentar,
+        'tanggal': tanggal.toIso8601String(),
+      };
 }
