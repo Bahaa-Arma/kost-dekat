@@ -17,6 +17,7 @@ class HalamanDetailKos extends StatefulWidget {
     this.kirimUlasan,
     this.isFavorit = false,
     this.onToggleFavorit,
+    this.heroTag,
   });
 
   final Kos kos;
@@ -27,6 +28,9 @@ class HalamanDetailKos extends StatefulWidget {
   final Future<void> Function(Ulasan ulasan)? kirimUlasan;
   final bool isFavorit;
   final VoidCallback? onToggleFavorit;
+
+  /// Sama persis dengan tag di [KartuKos] yang membuka halaman ini.
+  final String? heroTag;
 
   @override
   State<HalamanDetailKos> createState() => _HalamanDetailKosState();
@@ -95,6 +99,24 @@ class _HalamanDetailKosState extends State<HalamanDetailKos> {
     }
   }
 
+  Widget _bungkusHero(ColorScheme warna, Widget gambar) {
+    final tag = widget.heroTag;
+    if (tag == null) return gambar;
+    return Hero(
+      tag: tag,
+      // Isi gambar detail (ikon + teks) akan overflow bila diperkecil saat terbang,
+      // jadi selama animasi tampilkan kotak polos yang ikonnya ikut menyesuaikan.
+      flightShuttleBuilder: (konteks, animasi, arah, dari, ke) => Container(
+        color: warna.primaryContainer,
+        padding: const EdgeInsets.all(8),
+        child: FittedBox(
+          child: Icon(Icons.apartment, color: warna.onPrimaryContainer),
+        ),
+      ),
+      child: gambar,
+    );
+  }
+
   double get _rataRataRating {
     if (_ulasanKos.isEmpty) return 0.0;
     final total = _ulasanKos.fold<int>(0, (sum, item) => sum + item.rating);
@@ -134,37 +156,40 @@ class _HalamanDetailKosState extends State<HalamanDetailKos> {
       body: ListView(
         children: [
           // Gambar aset + placeholder jika belum ada di aset
-          ClipRRect(
-            child: Image.asset(
-              'assets/images/kos_${kos.id}.png',
-              width: double.infinity,
-              height: 240,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) {
-                return Container(
-                  width: double.infinity,
-                  height: 240,
-                  color: warna.primaryContainer,
-                  alignment: Alignment.center,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.apartment,
-                        size: 72,
-                        color: warna.onPrimaryContainer,
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        kos.nama,
-                        style: teks.titleMedium?.copyWith(
+          _bungkusHero(
+            warna,
+            ClipRRect(
+              child: Image.asset(
+                'assets/images/kos_${kos.id}.png',
+                width: double.infinity,
+                height: 240,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    width: double.infinity,
+                    height: 240,
+                    color: warna.primaryContainer,
+                    alignment: Alignment.center,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.apartment,
+                          size: 72,
                           color: warna.onPrimaryContainer,
                         ),
-                      ),
-                    ],
-                  ),
-                );
-              },
+                        const SizedBox(height: 8),
+                        Text(
+                          kos.nama,
+                          style: teks.titleMedium?.copyWith(
+                            color: warna.onPrimaryContainer,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
             ),
           ),
           Padding(

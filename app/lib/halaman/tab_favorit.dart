@@ -79,6 +79,7 @@ class TabFavorit extends StatelessWidget {
                   kirimUlasan: kirimUlasan,
                   isFavorit: true,
                   onToggleFavorit: () => onToggleFavorit?.call(kos.id),
+                  heroTag: 'favorit-${kos.id}',
                 ),
               ),
           ],
