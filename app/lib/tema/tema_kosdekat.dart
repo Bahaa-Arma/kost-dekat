@@ -1,63 +1,87 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-/// Token `kd.ref.color.seed` (docs/design/design.md). Satu-satunya hex warna merek.
-// shortcut: seed masih usulan (inferred), ganti setelah tim memilih dari shot "Papa Kost".
-const warnaSeed = Color(0xFF1F6FEB);
+/// Seed color diambil dari referensi Dribbble "Papa Kost" (Kretya Studio): #14695C (deep pine green / teal).
+const warnaSeed = Color(0xFF14695C);
 
-/// Warna di luar ColorScheme.
-@immutable
-class WarnaKosDekat extends ThemeExtension<WarnaKosDekat> {
-  const WarnaKosDekat({required this.bintang});
+/// Pengatur mode tema (default: ThemeMode.system).
+final themeModeNotifier = ValueNotifier<ThemeMode>(ThemeMode.system);
 
-  final Color bintang;
-
-  @override
-  WarnaKosDekat copyWith({Color? bintang}) =>
-      WarnaKosDekat(bintang: bintang ?? this.bintang);
-
-  @override
-  WarnaKosDekat lerp(WarnaKosDekat? other, double t) =>
-      WarnaKosDekat(bintang: Color.lerp(bintang, other?.bintang, t)!);
-}
-
-ThemeData _buatTema(Brightness brightness) {
-  final skema = ColorScheme.fromSeed(
+/// Tema terang khas KosDekat.
+final temaTerang = ThemeData(
+  useMaterial3: true,
+  colorScheme: ColorScheme.fromSeed(
     seedColor: warnaSeed,
-    brightness: brightness,
-  );
-  return ThemeData(
-    colorScheme: skema,
-    // Hanya berat yang beda dari skala M3 (design.md, Typography); ukuran tetap bawaan.
-    textTheme: const TextTheme(
-      headlineMedium: TextStyle(fontWeight: FontWeight.w600),
-      headlineSmall: TextStyle(fontWeight: FontWeight.w600),
-      titleLarge: TextStyle(fontWeight: FontWeight.w600),
-      titleMedium: TextStyle(fontWeight: FontWeight.w600),
+    brightness: Brightness.light,
+  ),
+  textTheme: GoogleFonts.plusJakartaSansTextTheme(),
+  appBarTheme: const AppBarTheme(
+    centerTitle: false,
+  ),
+  cardTheme: CardThemeData(
+    elevation: 1,
+    clipBehavior: Clip.antiAlias,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(16),
     ),
-    // Komponen lain memakai bawaan M3 karena sudah sesuai design-components.md.
-    cardTheme: const CardThemeData(
-      elevation: 0,
-      margin: EdgeInsets.zero,
+  ),
+  filledButtonTheme: FilledButtonThemeData(
+    style: FilledButton.styleFrom(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(16)),
+        borderRadius: BorderRadius.circular(14),
       ),
     ),
-    // Text Field outlined radius 12; warna fokus dan error tetap bawaan M3.
-    inputDecorationTheme: const InputDecorationTheme(
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(12)),
-      ),
+  ),
+  navigationBarTheme: NavigationBarThemeData(
+    indicatorShape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(14),
     ),
-    extensions: [
-      // Amber gelap di mode terang agar kontras bintang tetap >= 3:1 (design.md).
-      WarnaKosDekat(
-        bintang: brightness == Brightness.light
-            ? const Color(0xFFB26A00)
-            : const Color(0xFFFFC107),
-      ),
-    ],
-  );
-}
+  ),
+  inputDecorationTheme: InputDecorationTheme(
+    filled: true,
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(14),
+    ),
+  ),
+);
 
-final temaTerang = _buatTema(Brightness.light);
-final temaGelap = _buatTema(Brightness.dark);
+/// Tema gelap khas KosDekat.
+final temaGelap = ThemeData(
+  useMaterial3: true,
+  colorScheme: ColorScheme.fromSeed(
+    seedColor: warnaSeed,
+    brightness: Brightness.dark,
+  ),
+  textTheme: GoogleFonts.plusJakartaSansTextTheme(
+    ThemeData.dark().textTheme,
+  ),
+  appBarTheme: const AppBarTheme(
+    centerTitle: false,
+  ),
+  cardTheme: CardThemeData(
+    elevation: 1,
+    clipBehavior: Clip.antiAlias,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(16),
+    ),
+  ),
+  filledButtonTheme: FilledButtonThemeData(
+    style: FilledButton.styleFrom(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(14),
+      ),
+    ),
+  ),
+  navigationBarTheme: NavigationBarThemeData(
+    indicatorShape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(14),
+    ),
+  ),
+  inputDecorationTheme: InputDecorationTheme(
+    filled: true,
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(14),
+    ),
+  ),
+);
+

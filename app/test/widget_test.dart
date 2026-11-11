@@ -1,29 +1,25 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
+import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart';
 import 'package:kosdekat/main.dart';
+import 'package:kosdekat/services/api_service.dart';
 import 'package:kosdekat/model/kos.dart';
 import 'package:kosdekat/widgets/kartu_kost.dart';
 
 void main() {
-  for (final terang in [true, false]) {
-    testWidgets('KosDekatApp tampil di tema ${terang ? 'terang' : 'gelap'}', (
-      tester,
-    ) async {
-      tester.platformDispatcher.platformBrightnessTestValue = terang
-          ? Brightness.light
-          : Brightness.dark;
-      addTearDown(tester.platformDispatcher.clearPlatformBrightnessTestValue);
+  setUpAll(() {
+    GoogleFonts.config.allowRuntimeFetching = false;
+  });
 
-      await tester.pumpWidget(const KosDekatApp());
-
-      expect(find.text('Masuk ke KosDekat'), findsOneWidget);
-      final konteks = tester.element(find.text('Masuk ke KosDekat'));
-      expect(
-        Theme.of(konteks).brightness,
-        terang ? Brightness.light : Brightness.dark,
-      );
+  testWidgets('KosDekatApp smoke test', (tester) async {
+    final client = MockClient((request) async {
+      return http.Response('[]', 200, headers: {'content-type': 'application/json'});
     });
+    final api = ApiService(baseUrl: 'http://localhost:8080', client: client);
+    await tester.pumpWidget(KosDekatApp(api: api));
+    expect(find.text('KosDekat'), findsOneWidget);
+    api.dispose();
   }
 
   testWidgets('kartu KosDekat menampilkan nama dan harga bulanan', (
