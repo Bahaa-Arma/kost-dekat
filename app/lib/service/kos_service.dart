@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 
 import '../model/kos.dart';
 import '../model/ringkasan_area.dart';
+import '../model/ulasan.dart';
 
 const String apiUrl = String.fromEnvironment(
   'API_URL',
@@ -11,8 +12,9 @@ const String apiUrl = String.fromEnvironment(
 );
 
 class KosService {
-  KosService({required this._client, String baseUrl = apiUrl})
-    : _baseUrl = baseUrl.replaceFirst(RegExp(r'/+$'), '');
+  KosService({http.Client? client, String baseUrl = apiUrl})
+    : _client = client ?? http.Client(),
+      _baseUrl = baseUrl.replaceFirst(RegExp(r'/+$'), '');
 
   final http.Client _client;
   final String _baseUrl;
@@ -36,6 +38,22 @@ class KosService {
         .toList();
   }
 
+  Future<Ulasan> kirimUlasan(Ulasan ulasan) async {
+    final response = await _client
+        .post(
+          Uri.parse('$_baseUrl/ulasan'),
+          headers: {'Content-Type': 'application/json'},
+          body: jsonEncode(ulasan.toJson()),
+        )
+        .timeout(const Duration(seconds: 8));
+    if (response.statusCode != 201) {
+      throw Exception('Gagal mengirim ulasan: status ${response.statusCode}');
+    }
+    return Ulasan.fromJson(
+      jsonDecode(utf8.decode(response.bodyBytes)) as Map<String, dynamic>,
+    );
+  }
+
   Future<Object?> _ambilJson(String path) async {
     final response = await _client
         .get(Uri.parse('$_baseUrl$path'))
@@ -44,5 +62,9 @@ class KosService {
       throw Exception('Gagal memuat data (kode ${response.statusCode})');
     }
     return jsonDecode(utf8.decode(response.bodyBytes));
+  }
+
+  void dispose() {
+    _client.close();
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'halaman/halaman_login.dart';
+import 'service/kos_service.dart';
 import 'tema/tema_kosdekat.dart';
 
 void main() {
@@ -8,7 +9,10 @@ void main() {
 }
 
 class KosDekatApp extends StatelessWidget {
-  const KosDekatApp({super.key});
+  const KosDekatApp({super.key, this.home, this.kosService});
+
+  final Widget? home;
+  final KosService? kosService;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +21,7 @@ class KosDekatApp extends StatelessWidget {
       theme: temaTerang,
       darkTheme: temaGelap,
       themeMode: ThemeMode.system,
-      home: const HalamanLogin(),
+      home: home ?? HalamanLogin(kosService: kosService),
     );
   }
 }
