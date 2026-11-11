@@ -128,7 +128,8 @@ Detail lengkap ada di [CONTRIBUTING.md](CONTRIBUTING.md).
 | P01–P02 Berjalan di emulator/HP Android, ≥ 4 tangkapan layar dari perangkat | screenshots/ | _n_ tangkapan layar dari _emulator/HP_ |
 | P01–P02 `flutter analyze` bersih (tanpa error maupun warning) | - | No issues found! |
 | P03 StatelessWidget & StatefulWidget buatan sendiri, setState mengubah tampilan | lib/_:_ | _ |
-| P03 TextField + TextEditingController di-dispose | lib/halaman/halaman_form_ulasan.dart:_ | Komentar ulasan |
+| P03 TextField + TextEditingController di-dispose | lib/halaman/halaman_form_ulasan.dart:28 | komentar & nama kos |
+| Fitur khas: Form ulasan + bintang | lib/halaman/halaman_form_ulasan.dart:68 | 5 IconButton bintang yang bisa diketuk |
 | P03 ≥ 2 jenis tombol Material 3 | lib/_:_ | FilledButton, IconButton, FloatingActionButton |
 | P03 ChoiceChip / FilterChip / SegmentedButton | lib/halaman/tab_cari.dart:_ | SegmentedButton tipe kos |
 | P03 SnackBar | lib/_:_ | "Ulasan tersimpan" |
@@ -159,7 +160,7 @@ Detail lengkap ada di [CONTRIBUTING.md](CONTRIBUTING.md).
 |------|-----------|------------|
 | Model `Kos` sesuai tema | lib/model/kos.dart:_ | id, nama, area, tipe, hargaBulanan, kamarMandiDalam, jarakKm, diperbarui |
 | Tab Cari · Favorit · Profil | lib/halaman/halaman_utama.dart:73-112 | NavigationBar 3 tab + IndexedStack |
-| Form ulasan: nama kos, rating 1–5 bintang yang bisa diketuk, komentar | lib/halaman/halaman_form_ulasan.dart:_ | Model `Ulasan` terpisah |
+| Form ulasan: nama kos, rating 1–5 bintang yang bisa diketuk, komentar | lib/halaman/halaman_form_ulasan.dart:68 | Model `Ulasan` terpisah, `dispose` di baris 28 |
 | SegmentedButton Putra/Putri/Campur | lib/halaman/tab_cari.dart:_ | |
 | Urutan berdasarkan harga atau jarak | lib/halaman/tab_cari.dart:_ | Termurah / Terdekat |
 | Harga format Rupiah "Rp1.250.000/bln" | lib/util/format_rupiah.dart:_ | Diuji di test/format_rupiah_test.dart |
