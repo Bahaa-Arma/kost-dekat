@@ -88,6 +88,7 @@ class HalamanUtamaState extends State<HalamanUtama> {
               namaPengguna: widget.namaPengguna,
               emailPengguna: widget.emailPengguna,
               daftarUlasan: _daftarUlasan,
+              jumlahFavorit: _idFavorit.length,
             ),
           ],
         ),

@@ -127,7 +127,7 @@ Detail lengkap ada di [CONTRIBUTING.md](CONTRIBUTING.md).
 | P01–P02 Nama aplikasi di launcher sesuai tema (bukan `flutter_application_1`) | android/app/src/main/AndroidManifest.xml:_ | Label "KosDekat" |
 | P01–P02 Berjalan di emulator/HP Android, ≥ 4 tangkapan layar dari perangkat | screenshots/ | _n_ tangkapan layar dari _emulator/HP_ |
 | P01–P02 `flutter analyze` bersih (tanpa error maupun warning) | - | No issues found! |
-| P03 StatelessWidget & StatefulWidget buatan sendiri, setState mengubah tampilan | lib/_:_ | _ |
+| P03 StatelessWidget & StatefulWidget buatan sendiri, setState mengubah tampilan | lib/halaman/tab_profil.dart:9 + lib/halaman/halaman_utama.dart:28 | TabProfil (Stateless) & HalamanUtama (Stateful) |
 | P03 TextField + TextEditingController di-dispose | lib/halaman/halaman_form_ulasan.dart:28 | komentar & nama kos |
 | Fitur khas: Form ulasan + bintang | lib/halaman/halaman_form_ulasan.dart:68 | 5 IconButton bintang yang bisa diketuk |
 | P03 ≥ 2 jenis tombol Material 3 | lib/_:_ | FilledButton, IconButton, FloatingActionButton |
