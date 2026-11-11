@@ -1,10 +1,12 @@
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
+
 import '../models/kos.dart';
 
 class ApiService {
   ApiService({http.Client? client, required this.baseUrl})
-      : _client = client ?? http.Client();
+    : _client = client ?? http.Client();
 
   final http.Client _client;
   final String baseUrl;

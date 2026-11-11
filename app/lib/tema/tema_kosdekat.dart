@@ -15,21 +15,15 @@ final temaTerang = ThemeData(
     brightness: Brightness.light,
   ),
   textTheme: GoogleFonts.plusJakartaSansTextTheme(),
-  appBarTheme: const AppBarTheme(
-    centerTitle: false,
-  ),
+  appBarTheme: const AppBarTheme(centerTitle: false),
   cardTheme: CardThemeData(
     elevation: 1,
     clipBehavior: Clip.antiAlias,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(16),
-    ),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
   ),
   filledButtonTheme: FilledButtonThemeData(
     style: FilledButton.styleFrom(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(14),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
     ),
   ),
   navigationBarTheme: NavigationBarThemeData(
@@ -39,9 +33,7 @@ final temaTerang = ThemeData(
   ),
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
-    border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(14),
-    ),
+    border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
   ),
 );
 
@@ -52,24 +44,16 @@ final temaGelap = ThemeData(
     seedColor: warnaSeed,
     brightness: Brightness.dark,
   ),
-  textTheme: GoogleFonts.plusJakartaSansTextTheme(
-    ThemeData.dark().textTheme,
-  ),
-  appBarTheme: const AppBarTheme(
-    centerTitle: false,
-  ),
+  textTheme: GoogleFonts.plusJakartaSansTextTheme(ThemeData.dark().textTheme),
+  appBarTheme: const AppBarTheme(centerTitle: false),
   cardTheme: CardThemeData(
     elevation: 1,
     clipBehavior: Clip.antiAlias,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(16),
-    ),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
   ),
   filledButtonTheme: FilledButtonThemeData(
     style: FilledButton.styleFrom(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(14),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
     ),
   ),
   navigationBarTheme: NavigationBarThemeData(
@@ -79,9 +63,6 @@ final temaGelap = ThemeData(
   ),
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
-    border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(14),
-    ),
+    border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
   ),
 );
-

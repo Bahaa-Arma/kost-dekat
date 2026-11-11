@@ -31,8 +31,13 @@ class Kos {
   );
 
   Map<String, dynamic> toJson() => {
-    'id': id, 'nama': nama, 'area': area, 'tipe': tipe,
-    'hargaBulanan': hargaBulanan, 'kamarMandiDalam': kamarMandiDalam,
-    'jarakKm': jarakKm, 'diperbarui': diperbarui.toIso8601String(),
+    'id': id,
+    'nama': nama,
+    'area': area,
+    'tipe': tipe,
+    'hargaBulanan': hargaBulanan,
+    'kamarMandiDalam': kamarMandiDalam,
+    'jarakKm': jarakKm,
+    'diperbarui': diperbarui.toIso8601String(),
   };
 }
