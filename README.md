@@ -8,11 +8,11 @@ Aplikasi Flutter untuk membantu mahasiswa menemukan kos di sekitar Telkom Univer
 - Anggota:
   | Nama | NIM | Tugas |
   |---|---|---|
-  | Arthur Budi Maharesi (ketua) | 1202022300304 | A1: server API shelf (`/kos`, `/kos/<id>`, `/area`), model `Kos`, ikon launcher & aset, halaman login, integrasi `main`, pull-to-refresh, Hero, kirim ulasan ke server |
+  | Arthur Budi Maharesi (ketua) | 102022300304 | A1: server API shelf (`/kos`, `/kos/<id>`, `/area`), model `Kos`, ikon launcher & aset, halaman login, integrasi `main`, pull-to-refresh, Hero, kirim ulasan ke server |
   | Rezka Dwi Anggoro | 102022300254 | A2: model `Ulasan`, `KosService` + `API_URL`, test MockClient, widget test, `flutter analyze` & `flutter test` |
   | Muhammad Althaf Arrajab | 102022300422 | A3: kartu kos, tab Cari (FutureBuilder 3 keadaan), SegmentedButton tipe, urutan harga/jarak, chip area, format Rupiah |
   | Bahaa Azzikra Azhar Arma | [NIM] | A4: NavigationBar + IndexedStack, halaman detail, form ulasan, Navigator.pop + mounted + SnackBar, tab Favorit, tab Profil |
-  | Muhammad Rasyadan Agung Sedayu |102022300312 | A5: tema `ColorScheme.fromSeed` + mode gelap, font Plus Jakarta Sans, audit warna, `POST /ulasan` di server, dokumentasi |
+  | Muhammad Rasyadan Agung Sedayu | 102022300312 | A5: tema `ColorScheme.fromSeed` + mode gelap, font Plus Jakarta Sans, audit warna, `POST /ulasan` di server, dokumentasi |
 
 ## Struktur repository
 ```text
@@ -63,11 +63,11 @@ Buka terminal kedua:
 
 ```bash
 cd app
-flutter create --platforms=android --org id.ac.telkomuniversity .
 flutter pub get
-dart run flutter_launcher_icons
 flutter run --dart-define=API_URL=http://10.0.2.2:8080
 ```
+
+Folder `android/` dan ikon launcher sudah ada di repository, jadi tidak perlu `flutter create` atau `flutter_launcher_icons` lagi.
 
 `10.0.2.2` adalah alamat khusus emulator Android untuk mengakses `localhost` komputer. Jika memakai HP fisik, ganti alamat tersebut dengan IP lokal komputer yang menjalankan server, misalnya:
 
@@ -75,11 +75,14 @@ flutter run --dart-define=API_URL=http://10.0.2.2:8080
 flutter run --dart-define=API_URL=http://192.168.1.10:8080
 ```
 
-Pastikan HP dan komputer berada pada jaringan Wi-Fi yang sama. Setelah `flutter create`, pastikan file `android/app/src/main/AndroidManifest.xml` memuat permission berikut tepat di bawah tag `<manifest>`:
+Pastikan HP dan komputer berada pada jaringan Wi-Fi yang sama. Izin internet sudah dideklarasikan di `app/android/app/src/main/AndroidManifest.xml`:
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET"/>
 ```
+
+## Video demo
+Tautan video demo (3–5 menit): **[isi tautan video]**
 
 ## Pengujian dan analisis
 Jalankan dari folder `app`:
@@ -128,7 +131,7 @@ Diambil dari aplikasi yang berjalan di emulator/HP Android (bukan mockup). Minim
 | Poin | File:baris | Keterangan |
 |------|-----------|------------|
 | P01–P02 Proyek dibuat dengan `flutter create --org id.ac.telkomuniversity`, paket bukan `com.example` | android/app/build.gradle.kts:19 | applicationId `id.ac.telkomuniversity.kosdekat` |
-| P01–P02 Nama aplikasi di launcher sesuai tema (bukan `flutter_application_1`) | android/app/src/main/AndroidManifest.xml:3 | Label "KosDekat" |
+| P01–P02 Nama aplikasi di launcher sesuai tema (bukan `flutter_application_1`) | android/app/src/main/AndroidManifest.xml:5 | Label "KosDekat" |
 | P01–P02 Berjalan di emulator/HP Android, ≥ 4 tangkapan layar dari perangkat | screenshots/ | Lihat bagian 9 |
 | P01–P02 `flutter analyze` bersih (tanpa error maupun warning) | - | No issues found! |
 | P03 StatelessWidget & StatefulWidget buatan sendiri, setState mengubah tampilan | lib/widget/kartu_kos.dart:11, lib/halaman/halaman_form_ulasan.dart:8, :80 | `KartuKos` (Stateless), `HalamanFormUlasan` (Stateful); mengetuk bintang memanggil `setState` dan jumlah bintang menyala berubah |
